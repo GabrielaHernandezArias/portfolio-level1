@@ -29,42 +29,48 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Some React & Frontend concepts used here
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### functional components vs class components
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+FUNCTIONAL COMPONENTS
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- defined as functions (eg. arrow functions)
+- use the 'const' or 'function' keyword
+- don't have their own instance, so you can't use "this"
+- historically, they were stateless, but with react hooks, now functional components can manage state using hooks like 'useState' and 'useEffect'
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+example:
 
-## Learn More
+```
+const MyFunctionalComponent: React.FC<Props> = (props) => {
+// Component logic here
+return <div>{props.message}</div>;
+};
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+export default MyFunctionalComponent;
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+CLASS COMPONENTS
 
-### Code Splitting
+- extend from React.Component, etc
+- have their own instance so you can use "this"
+- historically used for components with state and lifecycle methods
+- with the introduction of react hooks, less people use class components now
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+example:
 
-### Analyzing the Bundle Size
+```
+interface Props {
+  message: string;
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+class MyClassComponent extends Component<Props> {
+  // Component logic here
+  render() {
+    return <div>{this.props.message}</div>;
+  }
+}
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+export default MyClassComponent;
+```
